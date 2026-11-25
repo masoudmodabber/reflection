@@ -1,0 +1,42 @@
+# Gradle and Android build output
+.gradle/
+**/build/
+/dist/
+*.apk
+*.aab
+*.ap_
+*.class
+.externalNativeBuild/
+.cxx/
+
+# Local SDK, IDE and machine settings
+local.properties
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.swp
+*~
+
+# Secrets and signing credentials
+.env
+.env.*
+!.env.example
+keystore.properties
+signing.properties
+secrets.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+
+# Private categories, reflection answers, backups and exports
+/private/
+/backups/
+/exports/
+*.backup.json
+*.export.json
+
+# Keep the official Gradle wrapper files in Git when generated.

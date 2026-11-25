@@ -1,0 +1,4 @@
+# Optional: copy this file to local.properties and replace the placeholder.
+# The real local.properties is ignored by Git.
+# Alternatively, set ANDROID_HOME in your shell.
+sdk.dir=/absolute/path/to/android-sdk

@@ -1,0 +1,104 @@
+PURPOSE
+Reflection is a local personal practice and reporting app. It is deliberately content-independent. Categories define recurring questionnaires and a list of practices to revisit. It is a personal reflection tool, not a clinical assessment or treatment service.
+
+HOME
+The first screen shows your categories and three links for daily, weekly and monthly reports due today. Each link also shows completed reports for today and the most recent missed period, if any. This is optional catch-up, not a growing backlog.
+
+A CATEGORY
+Practice & reminders: a list of behaviours, principles and habits to revisit. Items are not permanently checked off.
+Daily, weekly and monthly reports: the configured names and their next pending due dates. Open a report to complete it when due, catch up on its latest missed period or read previous submissions. Report history collects completed reports across the category.
+
+SCHEDULE
+All deadlines are 9 pm in your phone's current local timezone.
+Daily: every day.
+Weekly: every Sunday.
+Monthly: the last Sunday of each calendar month (not the last day or a fixed four-week cycle).
+Reports open at midnight on their due date and may be completed before 9 pm. The app never creates reports for dates before a report was imported. A completed report is not due again until the next scheduled period. If you miss a period, the most recent missed one is still available; older missed periods are not queued. A missed report remains associated with its original due date. No reminder is sent solely for an overdue report.
+
+REMINDERS
+Enable notifications from Reminder settings. On Android 12 or newer, also allow Alarms & reminders for exact scheduling. If exact alarms are unavailable, Android may deliver reminders late. One notification is sent for all uncompleted reports scheduled for that date, not one notification per question or report. The app reschedules after importing, submitting, opening the app, rebooting and timezone/time changes. A force stop, disabled notification channel or manufacturer battery restrictions can prevent delivery. Reopen the app after a force stop. A report completed before 9 pm does not trigger a notification for that period.
+
+DATA AND PRIVACY
+All imported definitions and submitted answers are stored locally in the app's private storage. The app has no Internet permission, account, advertising or cloud sync. Android automatic backup is disabled. The JSON is a category definition, not a backup of your answers. Uninstalling the app or clearing its storage deletes the local data. Unsubmitted answers are not saved as drafts. Completed reports are read-only and retain the question wording and answers as they existed when submitted. This version does not export reports.
+
+CONTENT DESIGN PRINCIPLES
+Minimum friction between remembering something and actually doing it. Reflection should support meaningful behaviour, not become another analytical task.
+Keep practice lists memorable: aim for five to seven short, distinct principles per category. Combine overlapping ideas. More than seven needs a clear reason; this is design guidance, not a schema limit.
+For graded assessments, prefer four clearly distinguishable verbal choices, backed by integer values 1 to 4 with higher values representing better outcomes. Use neutral wording suited to each question; do not force people to distinguish arbitrary numeric scores. Allow an optional skip when a question does not apply. Use yes/no or ordinary choices when a rating is unnecessary.
+Ask about recognisable experiences and observable consequences. Avoid asking people to estimate accumulated time, frequency or intensity that they cannot reasonably recall. For example, ask whether repetitive thinking interrupted an intended activity rather than how many minutes it lasted.
+Keep daily reports around two minutes; weekly and monthly reports should focus on practical lessons and actions. Do not add questions merely because a new insight emerges. Avoid guilt, streaks and unnecessary monitoring. Numeric ratings are for useful comparison, not a clinical assessment.
+
+ADDING OR CHANGING A CATEGORY
+Create a UTF-8 JSON file, one category per file. Choose Import category JSON from the home screen and select it using Android's file picker. The file is validated before saving. A new category ID creates a new category. Importing an existing category ID replaces its definition but preserves all completed reports. Keep IDs stable when updating wording. Removing a report from the JSON stops its reminders but retains its completed submissions in category history. If a report changes cadence, give it a new ID. Do not reuse IDs for conceptually unrelated questions or reports. Archive hides a category and stops its reminders. To restore it, import the definition with the same category ID; its historical submissions return, with new reporting periods starting from the restoration date.
+
+JSON SCHEMA VERSION 1
+The complete structure is shown below. JSON does not allow comments or trailing commas.
+
+{
+  "schemaVersion": 1,
+  "id": "example-category",
+  "name": "Example category",
+  "description": "Optional category introduction.",
+  "review": [
+    "A principle to remember.",
+    "A practice to repeat."
+  ],
+  "reports": [
+    {
+      "id": "daily-check-in",
+      "name": "Daily check-in",
+      "cadence": "daily",
+      "description": "Optional report instructions.",
+      "questions": [
+        {
+          "id": "progress",
+          "label": "How did today go?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": ["Very difficult", "Somewhat difficult", "Fairly easy", "Very easy"]
+        },
+        {
+          "id": "notes",
+          "label": "Anything to remember?",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
+
+CATEGORY FIELDS
+schemaVersion: integer, currently 1.
+id: unique stable string (1–64 characters, letters, numbers, underscore and hyphen; starts with a letter or number).
+name: visible title, max 100 characters.
+description: optional introduction, max 3000 characters.
+review: array of strings (up to 100 items, up to 2000 characters each). May be empty.
+reports: array of report objects (up to 60). May be empty.
+
+REPORT FIELDS
+id: stable string, unique within the category.
+name: visible title, max 100 characters.
+cadence: daily, weekly or monthly (lowercase). The schedule is fixed by the app.
+description: optional, max 3000 characters.
+questions: array of 1–50 question objects.
+
+QUESTION FIELDS
+id: stable string, unique within the report.
+label: question text, max 500 characters.
+type: one of the five types below.
+required: optional boolean, defaults to true.
+hint: optional explanatory text, max 1000 characters.
+
+Question types and extra fields:
+text — free text; no additional fields.
+boolean — Yes or No; no additional fields. Saved as true or false.
+choice — one selection; requires options, an array of 2–30 distinct nonempty strings (max 200 characters per option).
+multiChoice — multiple selections; same options field as choice. Use required:false if no selections is a valid answer.
+scale — integer rating; requires integer min and max, min < max. Bounds must lie between -1000 and 1000 with no more than 100 steps. Optional labels: an array of distinct nonempty strings (max 200 characters each), exactly one per integer, ordered from min to max. Labelled scales display words in descending value order and store integer answers. Optional labelled scales can be skipped; "Not applicable (skip)" is reserved for this purpose. Unlabelled scales continue to use numeric selections. Historical answers display the labels from their own saved question definitions. Prefer four concrete, neutral labels and a consistent direction (higher is better) for personal assessments. Use a new question ID when changing the rating range or meaning to avoid mixing incompatible scores. Label support requires app version 0.1.1 or later.
+
+Optional questions may be left blank. Every submission stores its original question definitions and answers. The maximum imported file size is 1 MB. Unknown extra fields are ignored in version 1; use the documented fields for predictable results.
+
+EXAMPLE
+The project's examples/breaking-the-feedback-loop.json is a ready-to-import category with a practice list and daily, weekly and monthly questionnaires. Copy it to your phone or download the JSON separately, then use Import category JSON.

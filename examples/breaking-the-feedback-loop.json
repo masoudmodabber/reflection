@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "id": "breaking-the-feedback-loop",
+  "name": "Breaking the feedback loop",
+  "description": "Use CBT to examine a concern once, then metacognitive techniques to disengage from repetitive analysis. The goal is to respond proportionately to reality and return attention to your life, not to eliminate unwanted thoughts or change your values.",
+  "review": [
+    "Repetition is not evidence. Emotional intensity is not accuracy.",
+    "Separate facts from interpretations. Examine a concern once and identify any practical action.",
+    "I do not need resolution to disengage. Reopen an issue only when there is new evidence or a genuine reason to reconsider it.",
+    "A thought is not an obligation to think. Notice it and return attention to what I was doing.",
+    "Reality is my validation dataset. Test assumptions through real experiences. Learn from mistakes without repeatedly examining them.",
+    "Delay emotionally charged responses. Give nonurgent consequential decisions and confrontations 24 hours without rehearsing arguments. Act sooner if safety or a real deadline requires it.",
+    "Practise attention control for five minutes. Focus on one sound for two minutes, switch between sounds for two minutes and notice several sounds together for one minute."
+  ],
+  "reports": [
+    {
+      "id": "daily-check-in",
+      "name": "Daily rumination check-in",
+      "cadence": "daily",
+      "description": "Take about two minutes. Focus on what happened in your day, not on analysing the thoughts themselves.",
+      "questions": [
+        {
+          "id": "daily-interference",
+          "label": "How much did repetitive thinking interfere with my day?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": [
+            "I left something important undone",
+            "I delayed something important",
+            "I was distracted but did what I intended",
+            "It did not interfere"
+          ]
+        },
+        {
+          "id": "disengagement-v2",
+          "label": "How easily could I disengage from repetitive thinking today?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": [
+            "I struggled to disengage",
+            "With considerable effort",
+            "With some effort",
+            "Quite easily"
+          ],
+          "required": false
+        },
+        {
+          "id": "impulsive-action",
+          "label": "Did I act impulsively on amplified emotions?",
+          "type": "boolean"
+        },
+        {
+          "id": "attention-practice",
+          "label": "Did I practise five minutes of voluntary attention control?",
+          "type": "boolean"
+        },
+        {
+          "id": "practice",
+          "label": "Which skills did I practise today?",
+          "type": "multiChoice",
+          "required": false,
+          "options": [
+            "Recognised a feedback loop",
+            "Distinguished evidence from interpretation",
+            "Disengaged without resolving a thought",
+            "Returned attention to a concrete activity",
+            "Delayed a non-urgent emotional response"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weekly-review",
+      "name": "Weekly feedback loop review",
+      "cadence": "weekly",
+      "description": "Take around five minutes. Look for patterns in your behaviour, not new explanations of old thoughts.",
+      "questions": [
+        {
+          "id": "weekly-interference",
+          "label": "How much did repetitive thinking interfere with my life this week?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": [
+            "I left something important undone",
+            "I delayed something important",
+            "I was distracted but did what I intended",
+            "It did not interfere"
+          ]
+        },
+        {
+          "id": "early-stopping-v2",
+          "label": "How consistently did I recognise repetitive thinking before it escalated?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": [
+            "Rarely",
+            "Sometimes",
+            "Usually",
+            "Almost always"
+          ],
+          "required": false
+        },
+        {
+          "id": "proportionate-action",
+          "label": "Did I handle workplace, relationship or other disagreements more proportionately?",
+          "type": "choice",
+          "options": [
+            "Yes",
+            "Partly",
+            "No",
+            "No relevant situations"
+          ]
+        },
+        {
+          "id": "experiment",
+          "label": "What did I learn from one real-world observation or behavioural experiment?",
+          "type": "text",
+          "required": false,
+          "hint": "One or two sentences. Record new evidence or an outcome, not another interpretation."
+        },
+        {
+          "id": "next-practice",
+          "label": "Which skill will I prioritise next week?",
+          "type": "choice",
+          "options": [
+            "Facts versus interpretations",
+            "Early stopping",
+            "Disengagement and uncertainty tolerance",
+            "Attention control",
+            "Testing assumptions in reality",
+            "Delaying consequential actions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monthly-review",
+      "name": "Monthly progress review",
+      "cadence": "monthly",
+      "description": "Take five to ten minutes. Review completed reports if helpful. A partial first month is fine. Assess the effect on real life rather than analysing every thought.",
+      "questions": [
+        {
+          "id": "monthly-interference",
+          "label": "How much did repetitive thinking interfere with my life this month?",
+          "type": "scale",
+          "min": 1,
+          "max": 4,
+          "labels": [
+            "I left something important undone",
+            "I delayed something important",
+            "I was distracted but did what I intended",
+            "It did not interfere"
+          ]
+        },
+        {
+          "id": "life-impact",
+          "label": "Where have I noticed a practical improvement?",
+          "type": "multiChoice",
+          "required": false,
+          "options": [
+            "Workplace interactions",
+            "Dating and relationships",
+            "Managing loneliness or uncertainty",
+            "Self-criticism",
+            "Time and attention for meaningful activities"
+          ]
+        },
+        {
+          "id": "evidence",
+          "label": "What concrete change in my behaviour or daily life shows progress or a remaining difficulty?",
+          "type": "text",
+          "required": false,
+          "hint": "One or two sentences about observable behaviour."
+        },
+        {
+          "id": "adjustment",
+          "label": "What one practical adjustment will I make next month?",
+          "type": "text",
+          "hint": "One action, not a new theory. This can be continuing a useful practice or seeking professional support."
+        }
+      ]
+    }
+  ]
+}
